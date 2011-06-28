@@ -1,0 +1,10 @@
+{% extends "Sf2genGeneratorBundle::layout.html.twig" %}
+
+{% block content %}
+    <h1>Choose your action</h1>
+    
+    <h2>{{ message }}</h2>
+    <ul>
+        <li><a href="{{ path('_generator_bundle') }}">Generate a bundle</a></li>
+    </ul>
+{% endblock %}

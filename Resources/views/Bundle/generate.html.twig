@@ -1,0 +1,56 @@
+{% extends "Sf2genGeneratorBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Generate your bundle{% endblock %}
+
+{% block content %}
+    {% form_theme form "SensioGeneratorBundle::form.html.twig" %}
+
+    <h1>Generate your Bundle</h1>
+
+    {{ form_errors(form) }}
+    <form action="" method="POST">
+        <div class="symfony-form-column">
+            {{ form_row(form.namespace_vendor, {'attr':{'onblur':'fix_namespace_vendor(this);'}}) }}
+            {{ form_row(form.namespace_bundle, {'attr':{'onblur':'fix_namespace_bundle(this);'}}) }}
+            {{ form_row(form.bundle_name) }}
+        </div>
+        <div class="symfony-form-column">
+            {{ form_row(form.dir) }}        
+            {{ form_row(form.format) }}
+            {{ form_row(form.structure) }}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="symfony-form-footer">
+            <p><input type="submit" value="Generate" class="symfony-button-grey" /></p>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function fix_namespace_vendor(el) {
+            el.value = el.value.substr(0,1).toUpperCase() + el.value.substr(1);
+        }
+        function fix_namespace_bundle(el) {
+            bundleTest = /Bundle$/;
+            bundleNoMajTest = /bundle$/;
+            newValue = el.value;            
+            if(!bundleTest.test(newValue)){
+                if(bundleNoMajTest.test(newValue)){
+                    newValue = newValue.substr(0,el.value.length-6) + 'Bundle';
+                }else{
+                    newValue += 'Bundle';
+                }
+            }
+            el.value = newValue.substr(0,1).toUpperCase() + newValue.substr(1);
+            create_bundle_name();
+        }    
+        function create_bundle_name() {
+            bundle_name = document.getElementById('generatebundle_bundle_name');
+            if(bundle_name.value.length == 0){
+                namespace_vendor = document.getElementById('generatebundle_namespace_vendor');
+                namespace_bundle = document.getElementById('generatebundle_namespace_bundle');            
+                bundle_name.value = namespace_vendor.value + namespace_bundle.value;
+            }
+        }
+    </script>
+{% endblock %}

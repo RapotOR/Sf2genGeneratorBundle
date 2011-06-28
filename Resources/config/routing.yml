@@ -1,0 +1,6 @@
+_generator:
+    resource: "@Sf2genGeneratorBundle/Controller/MainController.php"
+    type:     annotation
+_generator_bundle:
+    resource: "@Sf2genGeneratorBundle/Controller/BundleController.php"
+    type:     annotation
