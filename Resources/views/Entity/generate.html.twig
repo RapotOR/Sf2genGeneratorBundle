@@ -1,0 +1,78 @@
+{% extends "Sf2genGeneratorBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Generate your bundle{% endblock %}
+
+{% block content %}
+    {% form_theme form "SensioGeneratorBundle::form.html.twig" %}
+
+    <h1>Generate an entity in an existing bundle</h1>
+
+    {{ form_errors(form) }}
+    <form action="" method="POST">
+        <div class="symfony-form-column">
+            {{ form_row(form.bundle, {'attr':{'onkeypress':'autocompletion(this);'}}) }}
+            {{ form_row(form.name, {'attr':{'onblur':'fix_entity(this);'}}) }}
+            {{ form_row(form.format) }}
+            {{ form_row(form.with_repository) }}
+        </div>
+        <div class="symfony-form-column">
+            <h3>Note that the primary key will be added automatically.</h3><br/>
+            <a class="entity_fields" href="#">Add a field</a><br/>       
+            {{ form_row(form.fields) }}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="symfony-form-footer">
+            <p><input type="submit" value="Generate" class="symfony-button-grey" /></p>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function autocompletion(el) {
+            
+        }
+        function fix_entity(el) {
+            el.value = el.value.substr(0,1).toUpperCase() + el.value.substr(1);
+        }
+        var entity_fields_prototype;
+        $(document).ready(function () {
+            $( "#generateentity_bundle" ).autocomplete({
+                source: "{{ path('_generator_entity_bundles') }}",
+                dataType: "jsonp",
+                minLength: 2,
+                success: function( data ) {
+                    response( $.map( data.items, function( item ) {
+                        return {
+                            label: item,
+                            value: item
+                        }
+                    }));
+				}
+            });
+            entity_fields_prototype = $('#generateentity_fields_prototype');
+            
+            var button = $('a.entity_fields');
+            button.click(function(event) {
+                event.preventDefault();
+
+                var index = entity_fields_prototype.parent('div').find(' > div').size();
+                row = $(entity_fields_prototype[0].innerHTML).clone(true);
+                row.find('*[id*="$$name$$"]').each(function() {
+                    var attribute;
+                    attribute = 'id';
+                    $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+                    attribute = 'name';
+                    if($(this).attr(attribute) != undefined)
+                        $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+                });
+                row.find('*[for*="$$name$$"]').each(function() {
+                    var attribute;
+                    attribute = 'for';
+                    $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+                });
+                entity_fields_prototype.closest('div').append(row);
+                row.show();
+            });
+        });
+    </script>
+{% endblock %}

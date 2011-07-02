@@ -4,3 +4,6 @@ _generator:
 _generator_bundle:
     resource: "@Sf2genGeneratorBundle/Controller/BundleController.php"
     type:     annotation
+_generator_entity:
+    resource: "@Sf2genGeneratorBundle/Controller/EntityController.php"
+    type:     annotation

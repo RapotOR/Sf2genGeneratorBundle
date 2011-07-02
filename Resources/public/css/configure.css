@@ -436,3 +436,7 @@ h1
     font-size: 10px;
     margin-right: 20px;
 }
+
+#generateentity_fields div.symfony-form-row {padding-bottom:10px;}
+#generateentity_fields div.symfony-form-field div.symfony-form-row {float:left; width:50%;}
+#generateentity_fields div.symfony-form-field label {display:none;}

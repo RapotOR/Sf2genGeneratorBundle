@@ -34,3 +34,18 @@
         {% endif %}
     </label>
 {% endblock %}
+
+{% block prototype_row %}
+{% spaceless %}
+    <script type="text/html" id="{{ proto_id }}">
+    <div class="symfony-form-row">
+        <div class="symfony-form-field">
+            {{ form_widget(form, {'attr':attr}) }}
+            <div class="symfony-form-errors">
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    </div>
+    </script>
+{% endspaceless %}
+{% endblock prototype_row %}
