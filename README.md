@@ -4,11 +4,20 @@ Introduction
 Sf2genGeneratorBundle contains web interface for SensioGeneratorBundle.
 The interface is same as WebConfiguratorBundle.
 
-Features
-========
+Have a look!
+============
 
-- Command autocompletion
-- Command history
+The main menu:
+<img src="https://github.com/RapotOR/Sf2genGeneratorBundle/raw/master/Resources/doc/generatorbundle_menu.jpg" width="995" alt="Screenshot" />
+
+Generate your bundle:
+<img src="https://github.com/RapotOR/Sf2genGeneratorBundle/raw/master/Resources/doc/generatorbundle_bundle.jpg" width="995" alt="Screenshot" />
+
+Generate an entity; the bundle name is autocompleted based on activated bundles in the your application:
+<img src="https://github.com/RapotOR/Sf2genGeneratorBundle/raw/master/Resources/doc/generatorbundle_entity_autocomplete.jpg" width="995" alt="Screenshot" />
+
+Generate a form; the bundle name and the entity name are autocompleted based on activated bundles in the your application and available entities:
+<img src="https://github.com/RapotOR/Sf2genGeneratorBundle/raw/master/Resources/doc/generatorbundle_entity_autocomplete.jpg" width="995" alt="Screenshot" />
 
 Installation
 ============
