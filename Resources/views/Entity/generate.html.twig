@@ -1,9 +1,9 @@
 {% extends "Sf2genGeneratorBundle::layout.html.twig" %}
 
-{% block title %}{{ parent() }} - Generate your bundle{% endblock %}
+{% block title %}{{ parent() }} - Generate an entity{% endblock %}
 
 {% block content %}
-    {% form_theme form "SensioGeneratorBundle::form.html.twig" %}
+    {% form_theme form "Sf2genGeneratorBundle::form.html.twig" %}
 
     <h1>Generate an entity in an existing bundle</h1>
 
@@ -36,19 +36,8 @@
         }
         var entity_fields_prototype;
         $(document).ready(function () {
-            $( "#generateentity_bundle" ).autocomplete({
-                source: "{{ path('_generator_entity_bundles') }}",
-                dataType: "jsonp",
-                minLength: 2,
-                success: function( data ) {
-                    response( $.map( data.items, function( item ) {
-                        return {
-                            label: item,
-                            value: item
-                        }
-                    }));
-				}
-            });
+            {% include 'Sf2genGeneratorBundle::js_autocomplete.html.twig' with {'id': 'generateentity_bundle', 'path':'_generator_bundles'} %}
+            
             entity_fields_prototype = $('#generateentity_fields_prototype');
             
             var button = $('a.entity_fields');

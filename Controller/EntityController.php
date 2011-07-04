@@ -5,6 +5,7 @@ namespace Sf2gen\Bundle\GeneratorBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Finder\Finder;
 
 //annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -61,22 +62,5 @@ class EntityController extends Controller
         return array(
             'form' => $form->createView()
         );
-    }
-    
-    /**
-     * @Route("/entity/bundles", name="_generator_entity_bundles")
-     */
-    public function bundlesAction()
-    {        
-        $request = $this->get('request');
-        $bundles = array_keys($this->get('kernel')->getBundles());
-        $term = $request->query->get('term');
-        
-        $list = array();
-        foreach($bundles as $bundle)
-            if(substr(strtolower($bundle),0,strlen($term)) == strtolower($term))
-                $list[] = $bundle;
-        
-        return new Response(json_encode($list));
     }
 }
