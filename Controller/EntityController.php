@@ -63,4 +63,38 @@ class EntityController extends Controller
             'form' => $form->createView()
         );
     }
+    
+    /**
+     * @Route("/entity/list", name="_generator_entities")
+     */
+    public function listAction()
+    {        
+        $request = $this->get('request');
+        $term = $request->query->get('term');
+        $bundleName = $request->query->get('bundle');
+        
+        $list = array();
+        $bundle = $this->get('kernel')->getBundle($bundleName);
+        
+        try{
+            $entityPath = $this->get('doctrine')->getEntityNamespace('TestTestBundle');
+            
+            $finder = new Finder();
+            $finder
+                ->files()
+                ->name('*.php')
+                ->in( $bundle->getPath() . DIRECTORY_SEPARATOR . 'Entity')
+            ;
+            
+            $list = array();
+            foreach ($finder as $file){
+                $fileName = basename($file->getRelativePathName(),'.php');
+                if( substr(strtolower($fileName),0,strlen($term)) == strtolower($term) )
+                    $list[] = $fileName;
+            }
+            return new Response(json_encode($list));
+        }catch(\Exception $e){
+            return new Response(''); // no valid entity path
+        }
+    }
 }

@@ -1,0 +1,48 @@
+{% extends "Sf2genGeneratorBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Generate a form{% endblock %}
+
+{% block content %}
+    {% form_theme form "Sf2genGeneratorBundle::form.html.twig" %}
+
+    <h1>Generate a form for an existing entity</h1>
+
+    {{ form_errors(form) }}
+    <form action="" method="POST">
+        <div class="symfony-form-column">
+            {{ form_row(form.bundle_name) }}
+        </div>
+        <div class="symfony-form-column">
+            {{ form_row(form.entity_name) }}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="symfony-form-footer">
+            <p><input type="submit" value="Generate" class="symfony-button-grey" /></p>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function fix_namespace_vendor(el) {
+            el.value = el.value.substr(0,1).toUpperCase() + el.value.substr(1);
+        }
+        function fix_namespace_bundle(el) {
+            bundleTest = /Bundle$/;
+            bundleNoMajTest = /bundle$/;
+            newValue = el.value;            
+            if(!bundleTest.test(newValue)){
+                if(bundleNoMajTest.test(newValue)){
+                    newValue = newValue.substr(0,el.value.length-6) + 'Bundle';
+                }else{
+                    newValue += 'Bundle';
+                }
+            }
+            el.value = newValue.substr(0,1).toUpperCase() + newValue.substr(1);
+            create_bundle_name();
+        }
+        $(document).ready(function () {
+            {% include 'Sf2genGeneratorBundle::js_autocomplete.html.twig' with {'id': 'generate_bundle_name', 'path':'_generator_bundles'} %}
+            {% include 'Sf2genGeneratorBundle::js_autocomplete.html.twig' with {'id': 'generate_entity_name', 'path':'_generator_entities','extras':{'bundle':'generate_bundle_name'}} %}
+        });
+    </script>
+{% endblock %}

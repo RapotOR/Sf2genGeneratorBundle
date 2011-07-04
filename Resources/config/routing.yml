@@ -7,3 +7,6 @@ _generator_bundle:
 _generator_entity:
     resource: "@Sf2genGeneratorBundle/Controller/EntityController.php"
     type:     annotation
+_generator_form:
+    resource: "@Sf2genGeneratorBundle/Controller/FormController.php"
+    type:     annotation
