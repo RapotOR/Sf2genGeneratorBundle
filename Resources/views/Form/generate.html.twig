@@ -4,7 +4,7 @@
 
 {% block content %}
     {% form_theme form "Sf2genGeneratorBundle::form.html.twig" %}
-
+    <a href="{{ path('_generator') }}">Back to main menu</a>
     <h1>Generate a form for an existing entity</h1>
 
     {{ form_errors(form) }}
