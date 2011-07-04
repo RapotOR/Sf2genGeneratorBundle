@@ -1,0 +1,23 @@
+$( "#{{ id }}" ).autocomplete({
+    source: function( request, response ) {
+        $.getJSON( "{{ path(path) }}", {
+            term: request.term
+            {% if extras is defined %}
+            {% spaceless %}
+            {% for var, field in extras %}
+            ,{{ var }}: $("#{{ field }}").val()
+            {% endfor %}
+            {% endspaceless %}
+            {% endif %}
+        }, response );
+	},
+    minLength: 2,
+    success: function( data ) {
+        response( $.map( data.items, function( item ) {
+            return {
+                label: item,
+                value: item
+            }
+        }));
+    }
+});
