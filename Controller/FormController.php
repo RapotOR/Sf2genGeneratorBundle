@@ -20,7 +20,7 @@ use Symfony\Bundle\DoctrineBundle\Mapping\MetadataFactory;
 /**
  * Controller for form generating
  *
- * @author Cédric Lahouste <cedric.lahouste@gmail.com>
+ * @author CÃ©dric Lahouste <cedric.lahouste@gmail.com>
  */
 class FormController extends Controller
 {   

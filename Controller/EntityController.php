@@ -20,7 +20,7 @@ use Sf2gen\Bundle\GeneratorBundle\Entity\Entity;
 /**
  * Controller for entity generating
  *
- * @author Cédric Lahouste <cedric.lahouste@gmail.com>
+ * @author CÃ©dric Lahouste <cedric.lahouste@gmail.com>
  */
 class EntityController extends Controller
 {   
