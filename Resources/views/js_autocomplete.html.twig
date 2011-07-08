@@ -2,13 +2,11 @@ $( "#{{ id }}" ).autocomplete({
     source: function( request, response ) {
         $.getJSON( "{{ path(path) }}", {
             term: request.term
-            {% if extras is defined %}
-            {% spaceless %}
-            {% for var, field in extras %}
-            ,{{ var }}: $("#{{ field }}").val()
-            {% endfor %}
-            {% endspaceless %}
-            {% endif %}
+            {%- if extras is defined -%}
+                {% for var, field in extras %}
+                    ,{{ var }}: $("#{{ field }}").val()
+                {% endfor %}
+            {%- endif -%}
         }, response );
 	},
     minLength: 2,

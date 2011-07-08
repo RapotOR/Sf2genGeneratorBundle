@@ -19,7 +19,7 @@ use Sf2gen\Bundle\GeneratorBundle\Entity\Bundle;
 /**
  * Controller for bundle generating
  *
- * @author Cédric Lahouste <cedric.lahouste@gmail.com>
+ * @author CÃ©dric Lahouste <cedric.lahouste@gmail.com>
  */
 class BundleController extends Controller
 {   
@@ -59,7 +59,7 @@ class BundleController extends Controller
     
     
     /**
-     * @Route("/bundle/list", name="_generator_bundles")
+     * @Route("/bundle/list.{_format}", name="_generator_bundles", requirements={"_format" = "json"}, default={"_format" = "json"})
      */
     public function listAction()
     {        

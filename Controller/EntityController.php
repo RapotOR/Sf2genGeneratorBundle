@@ -20,7 +20,7 @@ use Sf2gen\Bundle\GeneratorBundle\Entity\Entity;
 /**
  * Controller for entity generating
  *
- * @author Cédric Lahouste <cedric.lahouste@gmail.com>
+ * @author CÃ©dric Lahouste <cedric.lahouste@gmail.com>
  */
 class EntityController extends Controller
 {   
@@ -65,7 +65,7 @@ class EntityController extends Controller
     }
     
     /**
-     * @Route("/entity/list", name="_generator_entities")
+     * @Route("/entity/list.{_format}", name="_generator_entities", requirements={"_format" = "json"}, default={"_format" = "json"})
      */
     public function listAction()
     {        
