@@ -2,10 +2,9 @@
 
 namespace Sf2gen\Bundle\GeneratorBundle\Form\Entity;
 
-use
-    Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilder
-    ;
+use Sf2gen\Bundle\GeneratorBundle\Form\AbstractType;
+
+use Symfony\Component\Form\FormBuilder;
 
 use Sf2gen\Bundle\GeneratorBundle\Entity\Field;
 

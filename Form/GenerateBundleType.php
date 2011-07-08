@@ -11,7 +11,6 @@
 
 namespace Sf2gen\Bundle\GeneratorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
 use Sf2gen\Bundle\GeneratorBundle\Entity\Bundle;

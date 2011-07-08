@@ -11,22 +11,18 @@
 
 namespace Sf2gen\Bundle\GeneratorBundle\Form;
 
-use Symfony\Component\Form\FormBuilder;
-
-use Sf2gen\Bundle\GeneratorBundle\Entity\Bundle;
+use Symfony\Component\Form\AbstractType as BaseAbstractType;
 
 /**
- * Form for Form generating
+ * Abstract Form because getName() was removed from original AbstractType
  *
  * @author Cédric Lahouste <cedric.lahouste@gmail.com>
  */
-class GenerateFormType extends AbstractType
+abstract class AbstractType extends BaseAbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function getName()
     {
-        $builder
-            ->add('bundle_name', 'text')
-            ->add('entity_name', 'text')
-        ;
+        preg_match('/\\\\(\w+?)(Form)?(Type)?$/i', get_class($this), $matches);
+        return strtolower($matches[1]);
     }
 }
