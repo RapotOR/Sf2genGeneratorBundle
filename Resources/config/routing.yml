@@ -1,12 +1,3 @@
 _generator:
-    resource: "@Sf2genGeneratorBundle/Controller/MainController.php"
-    type:     annotation
-_generator_bundle:
-    resource: "@Sf2genGeneratorBundle/Controller/BundleController.php"
-    type:     annotation
-_generator_entity:
-    resource: "@Sf2genGeneratorBundle/Controller/EntityController.php"
-    type:     annotation
-_generator_form:
-    resource: "@Sf2genGeneratorBundle/Controller/FormController.php"
+    resource: "@Sf2genGeneratorBundle/Controller"
     type:     annotation
