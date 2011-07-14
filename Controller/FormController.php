@@ -40,7 +40,7 @@ class FormController extends Controller
 
             if ($form->isValid()) {
                 $bundle   = $this->get('kernel')->getBundle($formEntity->bundle_name);
-                $entityClass = $this->get('doctrine')->getEntityNamespace($formEntity->bundle_name).'\\'.$formEntity->entity_name;
+                $entityClass = $bundle->getNamespace().'\\Entity\\'.$formEntity->entity_name;
                 $metadata = $this->getEntityMetadata($entityClass);
                 
                 $generator = new DoctrineFormGenerator($this->get('filesystem'), $this->get('kernel')->locateResource('@SensioGeneratorBundle/Resources/skeleton/form'));
