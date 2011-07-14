@@ -72,17 +72,16 @@ class EntityController extends Controller
         $request = $this->get('request');
         $term = $request->query->get('term');
         $bundleName = $request->query->get('bundle');
-        
+
         $list = array();
-        $bundle = $this->get('kernel')->getBundle($bundleName);
+        $bundle = $this->get('kernel')->getBundle($bundleName);      
         
         try{
-            $entityPath = $this->get('doctrine')->getEntityNamespace('TestTestBundle');
-            
             $finder = new Finder();
             $finder
                 ->files()
                 ->name('*.php')
+                ->notName('*Repository.php')
                 ->in( $bundle->getPath() . DIRECTORY_SEPARATOR . 'Entity')
             ;
             
