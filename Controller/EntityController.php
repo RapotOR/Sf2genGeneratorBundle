@@ -65,7 +65,7 @@ class EntityController extends Controller
     }
     
     /**
-     * @Route("/entity/list.{_format}", name="_generator_entities", requirements={"_format" = "json"}, defaults={"_format" = "json"})
+     * @Route("/entity/list.json", name="_generator_entities")
      */
     public function listAction()
     {        

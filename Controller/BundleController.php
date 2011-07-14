@@ -59,7 +59,7 @@ class BundleController extends Controller
     
     
     /**
-     * @Route("/bundle/list.{_format}", name="_generator_bundles", requirements={"_format" = "json"}, defaults={"_format" = "json"})
+     * @Route("/bundle/list.json", name="_generator_bundles")
      */
     public function listAction()
     {        
