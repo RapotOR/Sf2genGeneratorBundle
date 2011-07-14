@@ -14,7 +14,7 @@ namespace Sf2gen\Bundle\GeneratorBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Bundle entity
+ * Form entity
  *
  * @author Cédric Lahouste <cedric.lahouste@gmail.com>
  */
