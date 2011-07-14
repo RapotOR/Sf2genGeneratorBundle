@@ -13,7 +13,7 @@
             {{ form_row(form.bundle_name) }}
         </div>
         <div class="symfony-form-column">
-            {{ form_row(form.entity_name) }}
+            {{ form_row(form.entity_name, {'attr':{'onblur':'fix_entity(this);'}}) }}
         </div>
 
         {{ form_rest(form) }}
@@ -23,22 +23,8 @@
         </div>
     </form>
     <script type="text/javascript">
-        function fix_namespace_vendor(el) {
+        function fix_entity(el) {
             el.value = el.value.substr(0,1).toUpperCase() + el.value.substr(1);
-        }
-        function fix_namespace_bundle(el) {
-            bundleTest = /Bundle$/;
-            bundleNoMajTest = /bundle$/;
-            newValue = el.value;            
-            if(!bundleTest.test(newValue)){
-                if(bundleNoMajTest.test(newValue)){
-                    newValue = newValue.substr(0,el.value.length-6) + 'Bundle';
-                }else{
-                    newValue += 'Bundle';
-                }
-            }
-            el.value = newValue.substr(0,1).toUpperCase() + newValue.substr(1);
-            create_bundle_name();
         }
         $(document).ready(function () {
             {% include 'Sf2genGeneratorBundle::js_autocomplete.html.twig' with {'id': 'generate_bundle_name', 'path':'_generator_bundles'} %}

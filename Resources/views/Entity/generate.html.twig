@@ -10,7 +10,7 @@
     {{ form_errors(form) }}
     <form action="" method="POST">
         <div class="symfony-form-column">
-            {{ form_row(form.bundle, {'attr':{'onkeypress':'autocompletion(this);'}}) }}
+            {{ form_row(form.bundle) }}
             {{ form_row(form.name, {'attr':{'onblur':'fix_entity(this);'}}) }}
             {{ form_row(form.format) }}
             {{ form_row(form.with_repository) }}
@@ -28,9 +28,6 @@
         </div>
     </form>
     <script type="text/javascript">
-        function autocompletion(el) {
-            
-        }
         function fix_entity(el) {
             el.value = el.value.substr(0,1).toUpperCase() + el.value.substr(1);
         }
