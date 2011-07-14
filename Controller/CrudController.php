@@ -31,7 +31,7 @@ class CrudController extends Controller
     public function generateAction()
     {
         $request = $this->get('request');
-        $formEntity = new Crud();
+        $crudEntity = new Crud();
         
         $form = $this->get('form.factory')->create(new GenerateCrudType(), $formEntity);
         
@@ -39,15 +39,15 @@ class CrudController extends Controller
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $bundle   = $this->get('kernel')->getBundle($formEntity->bundle_name);
-                $entityClass = $this->get('doctrine')->getEntityNamespace($formEntity->bundle_name).'\\'.$formEntity->entity_name;
+                $bundle   = $this->get('kernel')->getBundle($crudEntity->bundle_name);
+                $entityClass = $this->get('doctrine')->getEntityNamespace($crudEntity->bundle_name).'\\'.$crudEntity->entity_name;
                 $metadata = $this->getEntityMetadata($entityClass);
                 $route_prefix = $this->getEntityMetadata($entityClass);
                 
                 $generator = new DoctrineCrudGenerator($this->get('filesystem'), $this->get('kernel')->locateResource('@SensioGeneratorBundle/Resources/skeleton/crud'));
-                $generator->generate($bundle, $formEntity->entity_name, $metadata[0], $formEntity->format, $formEntity->route_prefix, $formEntity->with_write_action);
+                $generator->generate($bundle, $crudEntity->entity_name, $metadata[0], $crudEntity->format, $crudEntity->route_prefix, $crudEntity->with_write_action);
                 
-                $request->getSession()->setFlash('notice', sprintf("CRUD based on entity '%s' has been generated.", $formEntity->entity_name));
+                $request->getSession()->setFlash('notice', sprintf("CRUD based on entity '%s' has been generated.", $crudEntity->entity_name));
                 return new RedirectResponse($this->generateUrl('_generator'));
             }
         }
