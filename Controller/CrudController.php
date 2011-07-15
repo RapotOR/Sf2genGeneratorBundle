@@ -33,7 +33,7 @@ class CrudController extends Controller
         $request = $this->get('request');
         $crudEntity = new Crud();
         
-        $form = $this->get('form.factory')->create(new GenerateCrudType(), $formEntity);
+        $form = $this->get('form.factory')->create(new GenerateCrudType(), $crudEntity);
         
         if ('POST' == $request->getMethod()) {
             $form->bindRequest($request);
