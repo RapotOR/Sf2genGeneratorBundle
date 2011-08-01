@@ -35,14 +35,15 @@
         $(document).ready(function () {
             {% include 'Sf2genGeneratorBundle::js_autocomplete.html.twig' with {'id': 'generateentity_bundle', 'path':'_generator_bundles'} %}
             
-            entity_fields_prototype = $('#generateentity_fields_prototype');
+            entity_fields_prototype = $('#generateentity_fields');
             
             var button = $('a.entity_fields');
             button.click(function(event) {
                 event.preventDefault();
 
-                var index = entity_fields_prototype.parent('div').find(' > div').size();
-                row = $(entity_fields_prototype[0].innerHTML).clone(true);
+                var index = entity_fields_prototype.find(' > div.symfony-form-row').size();
+                row = $($(entity_fields_prototype).attr('data-prototype')).clone(true);
+                row.find(' > label').hide();
                 row.find('*[id*="$$name$$"]').each(function() {
                     var attribute;
                     attribute = 'id';
@@ -56,7 +57,7 @@
                     attribute = 'for';
                     $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
                 });
-                entity_fields_prototype.closest('div').append(row);
+                entity_fields_prototype.append(row);
                 row.show();
             });
         });
